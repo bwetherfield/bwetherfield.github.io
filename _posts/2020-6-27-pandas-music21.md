@@ -19,7 +19,7 @@ Next we iterate over our score and populate our dataframe with the collected row
 
 {%gist 1368700b66b02ae19557fbf14e22505d %}
 
-## Squashing consecutive rows of the same type
+## Merging adjacent rows of the same type
 
 For my application, I require that a list of consecutive rests (notated silences) be lumped together as a _single_ rest with accumulated duration. For the first step, we extract a DataFrame of all the rests, and look for consecutive rows using `itertools.groupby`. Our intention is to use the `pandas.DataFrame.groupby` method, which .
 
