@@ -21,12 +21,18 @@ Next we iterate over our score and populate our dataframe with the collected row
 
 ## Merging adjacent rows of the same type
 
-For my application, I require that a list of consecutive rests (notated silences) be lumped together as a _single_ rest with accumulated duration. For the first step, we extract a DataFrame of all the rests, and look for consecutive rows using `itertools.groupby`. Our intention is to use the `pandas.DataFrame.groupby` method, which .
+For my application, I require that a list of consecutive rests (notated silences) be lumped together as a _single_ rest with accumulated duration. All other rows of the dataset must be kept in tact, as shown below:
+
+
+### Before merging adjacent rests
 
 ![Before merging]({{ site.baseurl }}/images/before_merging)
 
+### After merging adjacent rests
+
 ![After merging]({{ site.baseurl }}/images/after_merging)
 
+_The 'note' rows are left alone. Only the rests in adjacent rows are merged together with durations summed - there are additional rests in the dataset, not shown._
 
 {% highlight Python %}
 rests = df[df['Type'] == note.Rest]
