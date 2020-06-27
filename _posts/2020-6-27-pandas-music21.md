@@ -26,9 +26,10 @@ For my application, I require that a list of consecutive rests (notated silences
 
 ### Before merging adjacent rests
 
-_Here is an excerpted view of the dataset before adjacent rests are merged together._
-
 ![Before merging]({{ site.baseurl }}/images/rests_before_merging.png)
+
+_An excerpted view of the dataset before adjacent rests are merged together._
+
 
 ### After merging adjacent rests
 
