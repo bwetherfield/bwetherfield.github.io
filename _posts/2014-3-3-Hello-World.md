@@ -20,9 +20,43 @@ Next we iterate over our score and populate our dataframe with the collected row
 
 _I made use of a couple great music21 funcionalities above. The `flat` attribute of `Stream` is a version of the object without any nesting. By calling `stripTies()`, a much more complex function, we combine notes that are tied into a single longer note with the combined duration of the tied notes (whether or not the resulting note can actually be represented in notation that way)._  
 
-
-
-
 ![_config.yml]({{ site.baseurl }}/images/untied_tied.png)
+_Visual rendering of the same section of music before and after calling `stripTies`. The tie is removed and the connected notes fused into a single note._
 
-The easiest way to make your first post is to edit this one. Go into /_posts/ and update the Hello World markdown file. For more instructions head over to the [Jekyll Now repository](https://github.com/barryclark/jekyll-now) on GitHub.
+Suppose we wanted to do something similar with rests (notated silences), combining contiguous rests into single rests of the same total duration. This operation can be done pretty neatly to the dataframe.
+
+```Python
+rests = df[df['Type'] == note.Rest]
+```
+
+```Python
+parts_names = rests['Part Name'].unique()
+    rest_runs_in_parts = []
+    for part_name in parts_names:
+        rest_idx = rests[rests['Part Name'] == part_name].index
+        rest_runs_in_part = [list(map(itemgetter(1), g)) for _, g in
+                             groupby(enumerate(rest_idx),
+                                     lambda ix: ix[1] - ix[0])]
+        rest_runs_in_parts.append(rest_runs_in_part)
+    rest_runs = reduce(add, rest_runs_in_parts)
+```
+
+```Python
+initial_rest_lookup = {}
+for nums in rest_runs:
+    initial_rest_lookup.update(dict.fromkeys(nums, nums[0]))
+
+def get_initial_rest(k):
+    return initial_rest_lookup.get(k, k)
+```
+
+```Python
+agg_func = dict.fromkeys(df, 'first')
+agg_func.update({'Duration': 'sum'})
+```
+
+```Python
+df.groupby(get_initial_rest, axis=0).agg(agg_func)
+```
+
+{%gist 00f30d06d4e14da581c94a59c5f5f243 %}
