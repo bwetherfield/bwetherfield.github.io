@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '`work-in-progress` pandas, playing along with music21!'
+title: 'Work-In-Progress Post: pandas, playing along with music21!'
 published: true
 ---
 _[music21](http://web.mit.edu/music21/), developed by Michael Scott Cuthbert, is an extensively featured and well maintained Python package for computational music theory. Lately, I've been using its highly useful musicxml parsing capability and model of notated music in tandem with the power of pandas DataFrames._
@@ -11,11 +11,11 @@ For my purposes I wanted a data structure with more random access features and e
 
 ## Putting Together the DataFrame
 
-Let's take a musical score, represented as a `Stream` object, and read the data we need into a dataframe. First we convert each music21 object we encounter into a row of our dataframe using this function.
+Let's take a musical score, represented as a `Stream` object, and read the data we need into a DataFrame. First we convert each music21 object we encounter into a row of our DataFrame using this function.
 
 {%gist b2b396905e467c7d365f52980838a9ca %}
 
-Next we iterate over our score and populate our dataframe with the collected rows. As demonstrated in [this stack overflow answer](https://stackoverflow.com/a/47979665), dataframes can be constructed substantially faster from a list of dictionaries than from sequential append operations. 
+Next we iterate over our score and populate our DataFrame with the collected rows. As demonstrated in [this stack overflow answer](https://stackoverflow.com/a/47979665), DataFrames can be constructed substantially faster from a list of dictionaries than from sequential append operations. 
 
 {%gist 1368700b66b02ae19557fbf14e22505d %}
 
@@ -39,7 +39,7 @@ _The non-rest rows are left alone. Only the rests in adjacent rows are merged to
 
 ## Implementation
 
-pandas DataFrames have an attribute method `groupby`, which can be used to ["split-apply-combine"](https://pandas.pydata.org/pandas-docs/stable/user_guide/groupby.html). This `groupby` method would work out-of-the-box if we wanted to merge _all_ rests into a single row, but we need to be a little trickier to leave other row types intact, while maintaining the order of the rows.
+pandas DataFrames have an attribute method `groupby`, which can be used to ["split-apply-combine"](https://pandas.pydata.org/pandas-docs/stable/user_guide/groupby.html). This `groupby` method would work out-of-the-box if we wanted to merge _all_ rests into a single row, but we need to be a little trickier to capture only adjacent `Rest`-Type rows and leave other row types intact - all while maintaining the order of the rows.
 
 Here's the function that does it!
 
