@@ -37,38 +37,6 @@ _An excerpted view of the dataset before adjacent rests are merged together._
 
 _The non-rest rows are left alone. Only the rests in adjacent rows are merged together with durations summed. The one adjacent pair of rests remaining in the above view lies at the boundary of two 'Parts', of the Violin and the Cello, so they should not be merged._
 
-{% highlight Python %}
-rests = df[df['Type'] == note.Rest]
-{% endhighlight %}
-
-{% highlight Python %}
-parts_names = rests['Part Name'].unique()
-    rest_runs_in_parts = []
-    for part_name in parts_names:
-        rest_idx = rests[rests['Part Name'] == part_name].index
-        rest_runs_in_part = [list(map(itemgetter(1), g)) for _, g in
-                             groupby(enumerate(rest_idx),
-                                     lambda ix: ix[1] - ix[0])]
-        rest_runs_in_parts.append(rest_runs_in_part)
-    rest_runs = reduce(add, rest_runs_in_parts)
-{% endhighlight %}
-
-{% highlight Python %}
-initial_rest_lookup = {}
-for nums in rest_runs:
-    initial_rest_lookup.update(dict.fromkeys(nums, nums[0]))
-
-def get_initial_rest(k):
-    return initial_rest_lookup.get(k, k)
-{% endhighlight %}
-
-{% highlight Python %}
-agg_func = dict.fromkeys(df, 'first')
-agg_func.update({'Duration': 'sum'})
-{% endhighlight %}
-
-{% highlight Python %}
-df.groupby(get_initial_rest, axis=0).agg(agg_func)
-{% endhighlight %}
+## Using `pandas.DataFrame.groupby` to group rows only if they are adjacent
 
 {%gist 00f30d06d4e14da581c94a59c5f5f243 %}
