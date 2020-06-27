@@ -1,6 +1,6 @@
 ---
 layout: post
-title: WIP - b210797 'pandas, playing along with music21!'
+title: WIP - ce6eff1 pandas, playing along with music21!
 published: true
 ---
 _[music21](http://web.mit.edu/music21/), developed by Michael Scott Cuthbert, is an extensively featured and well maintained Python package for computational music theory. Lately, I've been using its highly useful musicxml parsing capability and model of notated music in tandem with the power of pandas DataFrames._
