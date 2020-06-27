@@ -3,7 +3,7 @@ layout: post
 title: 'pandas, playing along with music21!'
 published: true
 ---
-_[music21](http://web.mit.edu/music21/), developed by Michael Scott Cuthbert, is an extensively featured and well maintained Python package for computational music theory. Lately, I've been using its highly useful musicxml parsing capability and model of notated music in tandem with [pandas](https://pandas.pydata.org/), whose `DataFrame` data structure (conveniently defined somewhere between a database and an array) is a stalwart of my data analysis work._
+_[music21](http://web.mit.edu/music21/), developed by Michael Scott Cuthbert, is an extensively featured and well maintained Python package for computational music theory. Lately, I've been using its highly useful musicxml parsing capability and model of notated music in tandem with in tandem with the power of pandas DataFrames._
 
 The functionality of the music21 package is built on top of the [`Stream`](https://web.mit.edu/music21/doc/usersGuide/usersGuide_06_stream2.html) data structure, which allows musical material to be stored in a nested forward-linked tree structure. It is used very powerfully in the library and its broader adoption. 
 
