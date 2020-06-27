@@ -23,7 +23,10 @@ Next we iterate over our score and populate our dataframe with the collected row
 
 For my application, I require that a list of consecutive rests (notated silences) be lumped together as a _single_ rest with accumulated duration. For the first step, we extract a DataFrame of all the rests, and look for consecutive rows using `itertools.groupby`. Our intention is to use the `pandas.DataFrame.groupby` method, which .
 
-![data view]({{ site.baseurl }}/images/Figure_1.png)
+![Before merging]({{ site.baseurl }}/images/before_merging)
+
+![After merging]({{ site.baseurl }}/images/after_merging)
+
 
 {% highlight Python %}
 rests = df[df['Type'] == note.Rest]
