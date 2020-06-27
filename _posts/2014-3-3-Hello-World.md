@@ -41,14 +41,14 @@ parts_names = rests['Part Name'].unique()
     rest_runs = reduce(add, rest_runs_in_parts)
 ```
 
-```Python
+{% highlight Python %}
 initial_rest_lookup = {}
 for nums in rest_runs:
     initial_rest_lookup.update(dict.fromkeys(nums, nums[0]))
 
 def get_initial_rest(k):
     return initial_rest_lookup.get(k, k)
-```
+{% endhighlight %}
 
 ```Python
 agg_func = dict.fromkeys(df, 'first')
