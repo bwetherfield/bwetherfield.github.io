@@ -45,13 +45,13 @@ Here's the function that does it!
 
 ### Key Tricks
 
-The list comprehension 
+The list comprehension beginning on line 14...
 
 ```
 [list(map(itemgetter(1), g)) for _, g in groupby(enumerate(rest_idx), lambda ix: ix[1] - ix[0])]
 ```
 
-divvies up all the rest indices into groups of consecutive indices. `itertools.groupby` sets boundaries between groups where its callable parameter (here a lambda) changes value. The rest of the syntax is some finagling to get the output into the form of a list of lists.
+... divvies up all the rest indices into groups of consecutive indices. `itertools.groupby` sets boundaries between groups where its callable parameter (here a lambda) changes value. The rest of the syntax is some finagling to get the output into the form of a list of lists.
 
 `get_initial_rest` is a function defined so that it returns the index of the first rest in a runs of adjacent rests, or the index of the row for any other row in the DataFrame (this is the key to keeping rows in order after merging). We use `get_initial_rest` as the labeling function that `pandas.DataFrame.groupby` can use to generate groups.
 
