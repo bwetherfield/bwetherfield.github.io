@@ -21,6 +21,7 @@ Next we iterate over our score and populate our dataframe with the collected row
 _I made use of a couple great music21 funcionalities above. The `flat` attribute of `Stream` is a version of the object without any nesting. By calling `stripTies()`, a much more complex function, we combine notes that are tied into a single longer note with the combined duration of the tied notes (whether or not the resulting note can actually be represented in notation that way)._  
 
 ![_config.yml]({{ site.baseurl }}/images/untied_tied.png)
+
 _Visual rendering of the same section of music before and after calling `stripTies`. The tie is removed and the connected notes fused into a single note._
 
 Suppose we wanted to do something similar with rests (notated silences), combining contiguous rests into single rests of the same total duration. This operation can be done pretty neatly to the dataframe.
