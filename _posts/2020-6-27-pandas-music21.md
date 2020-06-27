@@ -26,13 +26,15 @@ For my application, I require that a list of consecutive rests (notated silences
 
 ### Before merging adjacent rests
 
+_Here is an excerpted view of the dataset before adjacent rests are merged together._
+
 ![Before merging]({{ site.baseurl }}/images/rests_before_merging.png)
 
 ### After merging adjacent rests
 
 ![After merging]({{ site.baseurl }}/images/rests_after_merging.png)
 
-_The 'note' rows are left alone. Only the rests in adjacent rows are merged together with durations summed - there are additional rests in the dataset, not shown._
+_The non-rest rows are left alone. Only the rests in adjacent rows are merged together with durations summed. The one adjacent pair of rests remaining in the above view lies at the boundary of two 'Parts', of the Violin and the Cello, so they should not be merged._
 
 {% highlight Python %}
 rests = df[df['Type'] == note.Rest]
