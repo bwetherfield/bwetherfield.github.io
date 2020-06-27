@@ -21,7 +21,7 @@ Next we iterate over our score and populate our dataframe with the collected row
 
 ## Merging adjacent rows of the same type
 
-For my application, I require that a list of consecutive rests (notated silences) be lumped together as a _single_ rest with accumulated duration. All other rows of the dataset must be kept in tact, as shown below:
+For my application, I require that a list of consecutive rests (notated silences) be lumped together as a _single_ rest with accumulated duration. All other rows of the dataset must be kept intact, as shown below:
 
 
 ### Before merging adjacent rests
@@ -37,6 +37,6 @@ _An excerpted view of the dataset before adjacent rests are merged together._
 
 _The non-rest rows are left alone. Only the rests in adjacent rows are merged together with durations summed. The one adjacent pair of rests remaining in the above view lies at the boundary of two 'Parts', of the Violin and the Cello, so they should not be merged._
 
-## Using `pandas.DataFrame.groupby` to group rows only if they are adjacent
+pandas DataFrames have an attribute method `groupby`, which can be used to ["split-apply-combine"](https://pandas.pydata.org/pandas-docs/stable/user_guide/groupby.html). This `groupby` method would work out-of-the-box if we wanted to merge _all_ rests into a single row, but we need to be a little trickier to leave other row types intact, while maintaining row orders.
 
 {%gist 00f30d06d4e14da581c94a59c5f5f243 %}
