@@ -26,11 +26,11 @@ For my application, I require that a list of consecutive rests (notated silences
 
 ### Before merging adjacent rests
 
-![Before merging]({{ site.baseurl }}/images/before_merging)
+![Before merging]({{ site.baseurl }}/images/before_merging.png)
 
 ### After merging adjacent rests
 
-![After merging]({{ site.baseurl }}/images/after_merging)
+![After merging]({{ site.baseurl }}/images/after_merging.png)
 
 _The 'note' rows are left alone. Only the rests in adjacent rows are merged together with durations summed - there are additional rests in the dataset, not shown._
 
