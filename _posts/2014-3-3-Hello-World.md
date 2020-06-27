@@ -25,11 +25,11 @@ _Visual rendering of the same section of music before and after calling `stripTi
 
 Suppose we wanted to do something similar with rests (notated silences), combining contiguous rests into single rests of the same total duration. This operation can be done pretty neatly to the dataframe.
 
-```Python
+{% highlight Python %}
 rests = df[df['Type'] == note.Rest]
-```
+{% endhighlight %}
 
-```Python
+{% highlight Python %}
 parts_names = rests['Part Name'].unique()
     rest_runs_in_parts = []
     for part_name in parts_names:
@@ -39,7 +39,7 @@ parts_names = rests['Part Name'].unique()
                                      lambda ix: ix[1] - ix[0])]
         rest_runs_in_parts.append(rest_runs_in_part)
     rest_runs = reduce(add, rest_runs_in_parts)
-```
+{% endhighlight %}
 
 {% highlight Python %}
 initial_rest_lookup = {}
@@ -50,13 +50,13 @@ def get_initial_rest(k):
     return initial_rest_lookup.get(k, k)
 {% endhighlight %}
 
-```Python
+{% highlight Python %}
 agg_func = dict.fromkeys(df, 'first')
 agg_func.update({'Duration': 'sum'})
-```
+{% endhighlight %}
 
-```Python
+{% highlight Python %}
 df.groupby(get_initial_rest, axis=0).agg(agg_func)
-```
+{% endhighlight %}
 
 {%gist 00f30d06d4e14da581c94a59c5f5f243 %}
