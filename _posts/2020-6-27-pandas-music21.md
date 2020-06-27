@@ -3,14 +3,15 @@ layout: post
 title: 'pandas, playing along with music21!'
 published: true
 ---
-_[music21](http://web.mit.edu/music21/), developed by Michael Scott Cuthbert, is an extensively featured and well maintained Python package for computational music theory. Lately, I've been using its highly useful musicxml parsing capability and model of notated music in tandem with in tandem with the power of pandas DataFrames._
+_[music21](http://web.mit.edu/music21/), developed by Michael Scott Cuthbert, is an extensively featured and well maintained Python package for computational music theory. Lately, I've been using its highly useful musicxml parsing capability and model of notated music in tandem with the power of pandas DataFrames._
 
 The functionality of the music21 package is built on top of the [`Stream`](https://web.mit.edu/music21/doc/usersGuide/usersGuide_06_stream2.html) data structure, which allows musical material to be stored in a nested forward-linked tree structure. It is used very powerfully in the library and its broader adoption. 
 
-For my purposes I wanted a data structure with more random access features and extensive grouping and filtering capabilities. I am okay sacrificing some of the musical modeling of the music21 ecosystem, holding onto just the data attributes I need for the project I'm working on. I wanted to show a cool data manipulation that I implemented using `pandas` that would have been harder to implement with music21 on its own.
+For my purposes I wanted a data structure with more random access features and extensive grouping and filtering capabilities than `Stream`. I was happy sacrificing some of the finely modeled aspects of the music21 ecosystem, holding onto just the attributes I needed for my pipeline and storing them in a pandas DataFrame.
 
+## Putting Together the DataFrame
 
-Let's take a musical score, represented as a `music21.stream.Stream`, and read the data we need into a dataframe. First we convert each music21 object we encounter into a row of our dataframe using this function.
+Let's take a musical score, represented as a `Stream` object, and read the data we need into a dataframe. First we convert each music21 object we encounter into a row of our dataframe using this function.
 
 {%gist b2b396905e467c7d365f52980838a9ca %}
 
@@ -18,13 +19,9 @@ Next we iterate over our score and populate our dataframe with the collected row
 
 {%gist 1368700b66b02ae19557fbf14e22505d %}
 
-_I made use of a couple great music21 funcionalities above. The `flat` attribute of `Stream` is a version of the object without any nesting. By calling `stripTies()`, a much more complex function, we combine notes that are tied into a single longer note with the combined duration of the tied notes (whether or not the resulting note can actually be represented in notation that way)._  
+## Using the DataFrame
 
-![_config.yml]({{ site.baseurl }}/images/untied_tied.png)
-
-_Visual rendering of the same section of music before and after calling `stripTies`. The tie is removed and the connected notes fused into a single note._
-
-Suppose we wanted to do something similar with rests (notated silences), combining contiguous rests into single rests of the same total duration. This operation can be done pretty neatly to the dataframe.
+For my application, I require that a list of consecutive rests (notated silences) be lumped together as a _single_ rest with accumulated duration. For the first step, we extract a DataFrame of all the rests, and look for consecutive rows using `itertools.groupby`. Our intention is to use the `pandas.DataFrame.groupby` method, which .
 
 {% highlight Python %}
 rests = df[df['Type'] == note.Rest]
