@@ -37,6 +37,19 @@ _An excerpted view of the dataset before adjacent rests are merged together._
 
 _The non-rest rows are left alone. Only the rests in adjacent rows are merged together with durations summed. The one adjacent pair of rests remaining in the above view lies at the boundary of two 'Parts', of the Violin and the Cello, so they should not be merged._
 
-pandas DataFrames have an attribute method `groupby`, which can be used to ["split-apply-combine"](https://pandas.pydata.org/pandas-docs/stable/user_guide/groupby.html). This `groupby` method would work out-of-the-box if we wanted to merge _all_ rests into a single row, but we need to be a little trickier to leave other row types intact, while maintaining row orders.
+## Implementation
+
+pandas DataFrames have an attribute method `groupby`, which can be used to ["split-apply-combine"](https://pandas.pydata.org/pandas-docs/stable/user_guide/groupby.html). This `groupby` method would work out-of-the-box if we wanted to merge _all_ rests into a single row, but we need to be a little trickier to leave other row types intact, while maintaining the order of the rows.
+
+Here's the function that does it!
 
 {%gist 00f30d06d4e14da581c94a59c5f5f243 %}
+
+### Key Tricks
+
+The list comprehension `[list(map(itemgetter(1), g)) for _, g in groupby(enumerate(rest_idx), lambda ix: ix[1] - ix[0])]` divvies up all the rest indices into groups of consecutive indices. `itertools.groupby` sets boundaries between groups where its callable parameter (here a lambda) changes value. The rest of the syntax is some finagling to get the output into the form of a list of lists.
+
+`get_initial_rest` is a function defined so that it returns the index of the first rest in a runs of adjacent rests, or the index of the row for any other row in the DataFrame (this is the key to keeping rows in order after merging). We use `get_initial_rest` as the labeling function that `pandas.DataFrame.groupby` can use to generate groups.
+
+Finally, we define an aggregation function for groupby that sums 'Duration' entries and takes the first row's element for all other columns. Note that this aggregation function does nothing to single-row groups, and does what we want for groups of rests!
+
