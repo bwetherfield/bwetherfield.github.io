@@ -14,11 +14,12 @@ Let's take a musical score, represented as a `music21.stream.Stream`, and read t
 
 {%gist b2b396905e467c7d365f52980838a9ca %}
 
-Next we iterate over our score and populate our dataframe with the collected rows. As I learned in [this stack overflow answer](https://stackoverflow.com/a/47979665), dataframes can be constructed substantially faster from a list of dictionaries than from sequential append operations. 
+Next we iterate over our score and populate our dataframe with the collected rows. As demonstrated in [this stack overflow answer](https://stackoverflow.com/a/47979665), dataframes can be constructed substantially faster from a list of dictionaries than from sequential append operations. 
 
 {%gist 1368700b66b02ae19557fbf14e22505d %}
 
 _I made use of a couple great music21 funcionalities above. The `flat` attribute of `Stream` is a version of the object without any nesting. By calling `stripTies()`, a much more complex function, we combine notes that are tied into a single longer note with the combined duration of the tied notes (whether or not the resulting note can actually be represented in notation that way)._  
+
 
 
 
