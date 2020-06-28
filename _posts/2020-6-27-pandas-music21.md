@@ -1,6 +1,8 @@
 ---
 layout: post
-title: 'Work-In-Progress Post: pandas, music21 and Working with Sequential Data!'
+title: >-
+  Work-In-Progress Post: pandas, music21: the Best of Best Worlds, Working with
+  Sequential Data!
 published: true
 ---
 _[music21](http://web.mit.edu/music21/), developed by Michael Scott Cuthbert, is an extensively featured and well maintained Python package for computational music theory. Lately, I've been using its highly useful musicxml parsing capability and model of notated music in tandem with the power of pandas DataFrames._
