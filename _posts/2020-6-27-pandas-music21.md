@@ -53,7 +53,7 @@ The list comprehension beginning on line 14...
 
 ... divvies up all the rest indices into groups of consecutive indices. `itertools.groupby` sets boundaries between groups where its callable parameter (here a lambda) changes value. The rest of the syntax is some finagling to get the output into the form of a list of lists.
 
-`get_initial_rest` is a function defined so that it returns the index of the first rest in a runs of adjacent rests, or the index of the row for any other row in the DataFrame (this is the key to keeping rows in order after merging). We use `get_initial_rest` as the labeling function that `pandas.DataFrame.groupby` can use to generate groups.
+When called on any index in a run of adjacent rests, `get_initial_rest` is defined to return the first index in the run. When called on the index of any other row in the dataset, it returns the same index. Hence `get_initial_rest` is used to map the indices of the input DataFrame to the indices of the output DataFrame, keeping the order of rows intact when runs of rests get combined. We use `get_initial_rest` as the labeling function that `pandas.DataFrame.groupby` can use to generate groups.
 
-Finally, we define an aggregation function for groupby that sums 'Duration' entries and takes the first row's element for all other columns. Note that this aggregation function does nothing to single-row groups, and does what we want for groups of rests!
+Finally, we define an aggregation function `agg_func` for groupby that sums 'Duration' entries and takes the first row's element for all other columns. Note that this aggregation function does nothing to single-row groups, and does what we want for groups of rests!
 
