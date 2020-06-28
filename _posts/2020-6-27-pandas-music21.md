@@ -3,7 +3,7 @@ layout: post
 title: 'music21, pandas and Transforming Ordered Data'
 published: true
 ---
-_[music21](http://web.mit.edu/music21/), developed by Michael Scott Cuthbert, is an extensively featured and well maintained Python package for computational music theory. Lately, I've been using its highly useful musicxml parsing capability and model of notated music in tandem with the power of pandas DataFrames. Special care is needed to condense the dataset while keeping the order intact._
+_[music21](http://web.mit.edu/music21/), developed by Michael Scott Cuthbert, is an extensively featured and well maintained Python package for computational music theory. Lately, I've been using its highly useful musicxml parsing capability and model of notated music in tandem with [pandas](https://pandas.pydata.org/) DataFrames. Special care is needed to condense the dataset while keeping the order intact._
 
 The functionality of the music21 package is built on top of the [`Stream`](https://web.mit.edu/music21/doc/usersGuide/usersGuide_06_stream2.html) data structure, which allows musical material to be stored in a nested forward-linked tree structure. For my purposes I wanted a data structure with more random access features and extensive grouping and filtering capabilities than `Stream`. I was happy sacrificing some of the finely modeled aspects of the music21 ecosystem, holding onto just the attributes I needed for my pipeline and storing them in a pandas DataFrame. In this post I will demonstrate a cool trick for handling sequential data in pandas: combining groups of adjacent rows with `groupby`, while keeping the order of the DataFrame intact.
 
@@ -13,7 +13,7 @@ Let's take a musical score, represented as a `Stream` object, and read the data 
 
 {%gist b2b396905e467c7d365f52980838a9ca %}
 
-Next we iterate over our score and populate our DataFrame with the collected rows. As demonstrated in [this stack overflow answer](https://stackoverflow.com/a/47979665), DataFrames can be constructed substantially faster from a list of dictionaries than from sequential append operations. 
+Next we iterate over our score and populate our DataFrame with the collected rows. As demonstrated in [this stack overflow answer](https://stackoverflow.com/a/47979665), DataFrames can be constructed substantially faster from a list of dictionaries than from sequential `append` operations. 
 
 {%gist 1368700b66b02ae19557fbf14e22505d %}
 
@@ -45,7 +45,7 @@ Here's the function that does it!
 
 ### Key Tricks
 
-The list comprehension beginning on line 14...
+The list comprehension beginning on line 14 (courtesy of this stack overflow answer)...
 
 {%gist b61f4564868599990997309c12468dbf %}
 
