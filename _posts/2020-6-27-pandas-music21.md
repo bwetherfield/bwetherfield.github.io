@@ -48,7 +48,9 @@ Here's the function that does it!
 The list comprehension beginning on line 14...
 
 ```
-[list(map(itemgetter(1), g)) for _, g in groupby(enumerate(rest_idx), lambda ix: ix[1] - ix[0])]
+rest_runs_in_part = [list(map(itemgetter(1), g)) for _, g in
+                             groupby(enumerate(rest_idx),
+                                     lambda ix: ix[1] - ix[0])]
 ```
 
 ... divvies up all the rest indices into groups of consecutive indices. `itertools.groupby` sets boundaries between groups where its callable parameter (here a lambda) changes value. The rest of the syntax is some finagling to get the output into the form of a list of lists.
