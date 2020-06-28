@@ -1,11 +1,11 @@
 ---
 layout: post
-title: 'Work-In-Progress Post: pandas, playing along with music21!'
+title: 'Work-In-Progress Post: pandas, music21 and Working with Sequential Data!'
 published: true
 ---
 _[music21](http://web.mit.edu/music21/), developed by Michael Scott Cuthbert, is an extensively featured and well maintained Python package for computational music theory. Lately, I've been using its highly useful musicxml parsing capability and model of notated music in tandem with the power of pandas DataFrames._
 
-The functionality of the music21 package is built on top of the [`Stream`](https://web.mit.edu/music21/doc/usersGuide/usersGuide_06_stream2.html) data structure, which allows musical material to be stored in a nested forward-linked tree structure. For my purposes I wanted a data structure with more random access features and extensive grouping and filtering capabilities than `Stream`. I was happy sacrificing some of the finely modeled aspects of the music21 ecosystem, holding onto just the attributes I needed for my pipeline and storing them in a pandas DataFrame. In this post, I will show a neat transformation to my musical data I was able to do with the help of `pandas` functionality. More widely, I hope folks working with sequential data in pandas, wanting to combine adjacent groups of rows while keeping the sequential order of the dataset intact, will find this demo helpful!
+The functionality of the music21 package is built on top of the [`Stream`](https://web.mit.edu/music21/doc/usersGuide/usersGuide_06_stream2.html) data structure, which allows musical material to be stored in a nested forward-linked tree structure. For my purposes I wanted a data structure with more random access features and extensive grouping and filtering capabilities than `Stream`. I was happy sacrificing some of the finely modeled aspects of the music21 ecosystem, holding onto just the attributes I needed for my pipeline and storing them in a pandas DataFrame. In this post I will demonstrate a nice trick for handling sequential data in pandas, combining groups of adjacent rows, while keeping the order of the DataFrame intact.
 
 ## Putting Together the DataFrame
 
