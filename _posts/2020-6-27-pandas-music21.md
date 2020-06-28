@@ -5,11 +5,11 @@ published: true
 ---
 _[music21](http://web.mit.edu/music21/), developed by Michael Scott Cuthbert, is an extensively featured and well maintained Python package for computational music theory. Lately, I've been using its highly useful [musicXML](https://www.musicxml.com/) parsing capability and model of notated music in tandem with [pandas](https://pandas.pydata.org/) DataFrames. I wanted to share a trick I've found for condensing rows of the dataset while keeping the sequential order intact._
 
-The functionality of the music21 package is built on top of the [`Stream`](https://web.mit.edu/music21/doc/usersGuide/usersGuide_06_stream2.html) data structure, which allows musical material to be stored in a nested forward-linked tree structure. For my purposes I wanted a data structure with more random access features and extensive grouping and filtering capabilities than `Stream`. I was happy sacrificing some of the finely modeled aspects of the music21 ecosystem, holding onto just the attributes I needed for my pipeline and storing them in a pandas DataFrame. In this post I will demonstrate a cool trick for handling sequential data in pandas: combining groups of adjacent rows with `groupby`, while keeping the order of the DataFrame intact.
+The functionality of the _music21_ package is built on top of the [`Stream`](https://web.mit.edu/music21/doc/usersGuide/usersGuide_06_stream2.html) data structure, which allows musical material to be stored in a nested forward-linked tree structure. For my purposes I wanted a data structure with more random access features and extensive grouping and filtering capabilities than `Stream`. I was happy sacrificing some of the finely modeled aspects of the _music21_ ecosystem, holding onto just the attributes I needed for my pipeline and storing them in a _pandas_ DataFrame. In this post I will demonstrate a cool trick for handling sequential data in _pandas_: combining groups of adjacent rows with `groupby`, while keeping the order of the DataFrame intact.
 
 ## Constructing the DataFrame
 
-Let's take a musical score, represented as a `Stream` object, and read the data we need into a DataFrame. First we convert each music21 object we encounter into a row of our DataFrame using this function.
+Let's take a musical score, represented as a `Stream` object, and read the data we need into a DataFrame. First we convert each _music21_ object we encounter into a row of our DataFrame using this function.
 
 {%gist b2b396905e467c7d365f52980838a9ca %}
 
@@ -26,7 +26,7 @@ For my application, I require that a list of consecutive rests (notated silences
 
 ![Before merging]({{ site.baseurl }}/images/rests_before_merging.png)
 
-_An excerpted view of the dataset before adjacent rests are merged together._
+_An excerpted view of the dataset before adjacent rests are merged together. Adjacent rows of Type `Rest` are highlighted. These are the rows that will be combined into a single row._
 
 
 ### After Merging Adjacent Rests
@@ -37,7 +37,7 @@ _The non-rest rows are left alone. Only the rests in adjacent rows are merged to
 
 ## Implementation
 
-pandas DataFrames have an attribute method `groupby`, which can be used to ["split-apply-combine"](https://pandas.pydata.org/pandas-docs/stable/user_guide/groupby.html). This `groupby` method would work out-of-the-box if we wanted to merge _all_ rests into a single row, but we need to be a little trickier to capture only adjacent `Rest`-Type rows and leave other row types intact - all while maintaining the order of the rows.
+_pandas_ DataFrames have an attribute method `groupby`, which can be used to ["split-apply-combine"](https://pandas.pydata.org/pandas-docs/stable/user_guide/groupby.html). This `groupby` method would work out-of-the-box if we wanted to merge _all_ rests into a single row, but we need to be a little trickier to capture only adjacent `Rest`-Type rows and leave other row types intact - all while maintaining the order of the rows.
 
 Here's the function that does it!
 
