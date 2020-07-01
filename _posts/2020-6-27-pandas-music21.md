@@ -45,7 +45,7 @@ Here's the function that does it!
 
 ### Key Tricks
 
-The list comprehension beginning on line 14 (courtesy of this stack overflow answer)...
+The list comprehension beginning on line 14...
 
 {%gist b61f4564868599990997309c12468dbf %}
 
