@@ -3,9 +3,7 @@ layout: post
 title: Pullbacks in numpy
 published: true
 ---
-## Implementing my thesis with a Python stack
-
-At the time of my writing my undergrad thesis, I bit off more than I could chew computationally. Though my whole intention was to come up with a computational model and algorithm for spelling the notes in a musical score ('choosing sharps and flats'), the math ended up keeping me sufficiently busy. I laid out a theoretical roadmap for implementation, without explicitly doing any programming. In particular, I left myself quite a hefty empirical study to do, in which I would train the algorithm on a large corpus of musical scores. I am now ready to embrace the messiness of real data from real scores with a trusty Python stack. Here I'll talk about a numpy abstraction that keeps coming up.
+_At the time of my writing my undergrad thesis, I bit off more than I could chew computationally. Though my whole intention was to come up with a computational model and algorithm for spelling the notes in a musical score ('choosing sharps and flats'), the math ended up keeping me sufficiently busy. I laid out a theoretical roadmap for implementation, without explicitly doing any programming. In particular, I left myself quite a hefty empirical study to do, in which I would train the algorithm on a large corpus of musical scores. I am now ready to embrace the messiness of real data from real scores with a trusty Python stack. Here I'll talk about a numpy abstraction that keeps coming up._
 
 ## Concepts
 
