@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Pullbacks in numpy
+title: A Useful Pullback Construction for numpy arrays
 published: true
 ---
-_At the time of my writing my undergrad thesis, I bit off more than I could chew computationally. Though my whole intention was to come up with a computational model and algorithm for spelling the notes in a musical score ('choosing sharps and flats'), the math ended up keeping me sufficiently busy. I laid out a theoretical roadmap for implementation, without explicitly doing any programming. In particular, I left myself quite a hefty empirical study to do, in which I would train the algorithm on a large corpus of musical scores. I am now ready to embrace the messiness of real data from real scores with a trusty Python stack. Here I'll talk about a numpy abstraction that keeps coming up._
+_At the time of my writing [my undergrad thesis](https://dash.harvard.edu/handle/1/38779539), I bit off more than I could chew computationally. Though my whole intention was to come up with a computational model and algorithm for spelling the notes in a musical score ('choosing sharps and flats'), the math ended up keeping me sufficiently busy. I laid out a theoretical roadmap for implementation, without explicitly doing any programming. In particular, I left myself quite a hefty empirical study to do, in which I would train the algorithm on a large corpus of musical scores. I am now ready to embrace the messiness of real data from real scores with a trusty Python stack. Here I'll talk about a [numpy](https://numpy.org/doc/1.18/index.html) abstraction that keeps coming up._
 
 ## Concepts
 
@@ -49,7 +49,7 @@ Here is our `pullback` function, with the 'map' component implemented as a 1D nu
 
 _Practically a one-liner!_ The `None` default value allows us to pass in no input matrix, in which case we use an identity matrix of the appropriate size. 
 
-$f$ would be defined as a numpy array as follows (assuming `import numpy as np` has been called:
+$f$ would be defined as a numpy array as follows (assuming `import numpy as np` has been called):
 
 ```
 f = np.array([0,0,0,1,1])
