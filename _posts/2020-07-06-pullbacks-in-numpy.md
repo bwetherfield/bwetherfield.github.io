@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Mountains out of Molehills: Pullbacks for _numpy_'
+title: 'Mountains out of Molehills: Pullbacks for numpy'
 published: true
 ---
 _At the time of my writing [my undergrad thesis](https://dash.harvard.edu/handle/1/38779539), I bit off more than I could chew computationally. Though my whole intention was to come up with a computational model and algorithm for spelling the notes in a musical score ('choosing sharps and flats'), the math ended up keeping me sufficiently busy. I laid out a theoretical roadmap for implementation, without explicitly doing any programming. In particular, I left myself quite a hefty empirical study to do, in which I would train the algorithm on a large corpus of musical scores. I am now embracing the messiness of real data from real musical scores with a trusty Python stack. Here I'll talk about a [numpy](https://numpy.org/doc/1.18/index.html) abstraction that keeps coming up._
