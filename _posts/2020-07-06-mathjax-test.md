@@ -1,5 +1,7 @@
 ---
-published: false
+layout: post
+title: 'music21, pandas and condensing sequential data'
+published: true
 ---
 ## A New Post
 
