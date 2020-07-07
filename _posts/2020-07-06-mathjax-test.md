@@ -9,7 +9,7 @@ Testing MathJax in this post
 
 $$ x^n = y^n + z^n $$
 
-\begin{align}
-x^n &= y^n + z^n \\\\
+$$\begin{align}
+x^n &= y^n + z^n \\
 x^n &= y^n + z^n
-\end{align}
+\end{align}$$
