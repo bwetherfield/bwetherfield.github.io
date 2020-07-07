@@ -3,6 +3,10 @@ layout: post
 title: Pullbacks in numpy
 published: true
 ---
+## Implementing my thesis with a Python stack
+
+At the time of my writing my undergrad thesis, I bit off more than I could chew computationally. Though my whole intention was to come up with a computational model and algorithm for spelling the notes in a musical score ('choosing sharps and flats'), the math ended up keeping me sufficiently busy. I laid out a theoretical roadmap for implementation, without explicitly doing any programming. In particular, I left myself quite a hefty empirical study to do, in which I would train the algorithm on a large corpus of musical scores. I am now ready to embrace the messiness of real data from real scores with a trusty Python stack. Here I'll talk about a numpy abstraction that keeps coming up.
+
 ## Concepts
 
 My undergraduate thesis made frequent use of a "pullback" construction for describing large matrices in terms of smallers ones, by performing an operation on the indices of the large matrix. 
@@ -37,7 +41,12 @@ $$\begin{align} M &= f^{-1} (m) \\\\
                    
 In other words, the larger matrix $M$ is defined such that $M$ at $(i, j)$ is the value of $m$ at $(f(i),f(j))$.
 
-This construction turns out to be very useful when you want to define a matrix based on the attributes of a type.
+This construction turns out to be very useful when you want to define a matrix based on the attributes of a type. An example: for the model of notated music in my undergrad thesis, I construct a matrix of edge weights where indices are pitch classes (0 = C, 1 = C#, 2 = D etc.), from which I can define a matrix where the indices are _notes_ in a score: each note has a pitch class, so the 'map' (fulfilling the role of $f$ above) takes a note to its pitch class. 
 
 ## numpy approach!
 
+Here is our `pullback` function, with the 'map' component implemented as an 1D numpy array.
+
+{%gist 71fb43e446f1eaa45165fe1adf1261e7 %}
+
+Practically a one-liner! 
