@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Mountains out of Molehills: Pullbacks for numpy'
+title: 'Mountains out of Molehills: Pullbacks for _numpy_'
 published: true
 ---
 _At the time of my writing [my undergrad thesis](https://dash.harvard.edu/handle/1/38779539), I bit off more than I could chew computationally. Though my whole intention was to come up with a computational model and algorithm for spelling the notes in a musical score ('choosing sharps and flats'), the math ended up keeping me sufficiently busy. I laid out a theoretical roadmap for implementation, without explicitly doing any programming. In particular, I left myself quite a hefty empirical study to do, in which I would train the algorithm on a large corpus of musical scores. I am now embracing the messiness of real data from real musical scores with a trusty Python stack. Here I'll talk about a [numpy](https://numpy.org/doc/1.18/index.html) abstraction that keeps coming up._
@@ -41,21 +41,21 @@ In other words, the larger matrix $M$ is defined such that $M$ at $(i, j)$ is th
 
 This construction turns out to be very useful when you want to define a matrix based on the attributes of a type. An example: for the model of notated music in my undergrad thesis, I construct a matrix of edge weights where indices are pitch classes (0 = C, 1 = C#, 2 = D etc.), from which I can define a matrix where the indices are _notes_ in a score: each note has a pitch class, so the 'map' (fulfilling the role of $f$ above) takes a note to its pitch class. 
 
-## numpy approach!
+## _numpy_ approach!
 
-Here is our `pullback` function, with the 'map' component implemented as a 1D numpy array.
+Here is our `pullback` function, with the 'map' component implemented as a 1D _numpy_ array.
 
 {%gist 71fb43e446f1eaa45165fe1adf1261e7 %}
 
 _Practically a one-liner!_ The `None` default value allows us to pass in no input matrix, in which case we use an identity matrix of the appropriate size. 
 
-$f$ would be defined as a numpy array as follows (assuming `import numpy as np` has been called):
+$f$ would be defined as a _numpy_ array as follows (assuming `import numpy as np` has been called):
 
 ```
 f = np.array([0,0,0,1,1])
 ```
 
-$m$ is defined in the usual way, as a 2D numpy array:
+$m$ is defined in the usual way, as a 2D _numpy_ array:
 
 ```
 m = np.array([[0,1],[2,3]])
