@@ -1,15 +1,25 @@
 ---
 layout: post
-title: 'music21, pandas and condensing sequential data'
+title: Pullbacks in numpy
 published: true
 ---
-## A New Post
+My undergraduate thesis made frequent use of a "pullback" construction for describing large matrices in terms of smallers ones, by performing an operation on the indices of the large matrix. 
 
-Testing MathJax in this post
+I'll show what I mean by way of an example.
 
-$$ x^n = y^n + z^n $$
+Let us define our smaller matrix as follows:
 
+To perform a pullback, we need a map $f: {\mathcal Z}_8 \to {\mathcal Z}_4$.
+
+Let us define our map as follows.
 $$\begin{align}
-x^n &= y^n + z^n \\\\
-x^n &= y^n + z^n
+f: 0 &mapsto 0 \\\\
+f: 1 &mapsto 0 \\\\
+f: 2 &mapsto 0 \\\\
+f: 3 &mapsto 0 \\\\
+f: 4 &mapsto 0 \\\\
+f: 5 &mapsto 1 \\\\
+f: 6 &mapsto 2 \\\\
+f: 7 &mapsto 3 \\\\
+f: 7 &mapsto 3 \\\\
 \end{align}$$
