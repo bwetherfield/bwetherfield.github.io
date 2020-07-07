@@ -51,10 +51,21 @@ Here is our `pullback` function, with the 'map' component implemented as an 1D n
 
 Practically a one-liner! 
 
-Now, here is the 
+ $f$ would be defined as a numpy array as follows (assuming `import numpy as np` has been called:
+
+```
+f = np.array([0,0,0,1,1])
+```
+
+$m$ is defined in the usual way, as 2D numpy array:
+
+```
+m = np.array([[0,1],[2,3]])
+```
+
+As desired, here is our pullback output (as computed by the Python REPL):
 
 ```Python
->>> f = np.array([0,0,0,1,1])
 >>> pullback(f, m)
 array([[0, 0, 0, 1, 1],
        [0, 0, 0, 1, 1],
