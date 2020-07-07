@@ -43,19 +43,19 @@ This construction turns out to be very useful when you want to define a matrix b
 
 ## numpy approach!
 
-Here is our `pullback` function, with the 'map' component implemented as an 1D numpy array.
+Here is our `pullback` function, with the 'map' component implemented as a 1D numpy array.
 
 {%gist 71fb43e446f1eaa45165fe1adf1261e7 %}
 
-Practically a one-liner! 
+_Practically a one-liner!_ The `None` default value allows us to pass in no input matrix, in which case we use an identity matrix of the appropriate size. 
 
- $f$ would be defined as a numpy array as follows (assuming `import numpy as np` has been called:
+$f$ would be defined as a numpy array as follows (assuming `import numpy as np` has been called:
 
 ```
 f = np.array([0,0,0,1,1])
 ```
 
-$m$ is defined in the usual way, as 2D numpy array:
+$m$ is defined in the usual way, as a 2D numpy array:
 
 ```
 m = np.array([[0,1],[2,3]])
