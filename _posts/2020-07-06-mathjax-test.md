@@ -9,7 +9,7 @@ I'll show what I mean by way of an example.
 
 Let us define a small (2x2) matrix as follows:
 
-$$m = \begin{bmatrix}0 & 1 \\\\ 2 & 3\end{bmatrix}$$
+$$m = \begin{pmatrix}0 & 1 \\\\ 2 & 3\end{pmatrix}$$
 
 We want to define a larger 5x5 matrix. To perform a pullback, we need a map $f: {\textbb{Z}}_5 \to {\textbb{Z}}_2$.
 
@@ -27,8 +27,8 @@ Now the pullback $f^{-1}(m)$ is defined as follows.
 
 $$\begin{align} M &= f^{-1} m \\\\
 
-&= \begin{bmatrix} 0 & 0 & 0 & 1 & 1 \\\\ 
+&= \begin{pmatrix} 0 & 0 & 0 & 1 & 1 \\\\ 
                    0 & 0 & 0 & 1 & 1 \\\\
                    0 & 0 & 0 & 1 & 1 \\\\
                    2 & 2 & 2 & 3 & 3 \\\\
-                   2 & 2 & 2 & 3 & 3 \end{bmatrix}\end{align}$$
+                   2 & 2 & 2 & 3 & 3 \end{pmatrix}\end{align}$$
