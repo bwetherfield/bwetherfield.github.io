@@ -11,7 +11,7 @@ Let us define a small (2x2) matrix as follows:
 
 $$m = \begin{bmatrix}0 & 1 \\\\ 2 & 3\end{bmatrix}$$
 
-We want to define a larger 5x5 matrix. To perform a pullback, we need a map $f: {\textbb Z}_5 \to {\textbb Z}_2$.
+We want to define a larger 5x5 matrix. To perform a pullback, we need a map $f: {\textbb{Z}}_5 \to {\textbb{Z}}_2$.
 
 Let us define our map as follows.
 
