@@ -3,6 +3,8 @@ layout: post
 title: Pullbacks in numpy
 published: true
 ---
+## Concepts
+
 My undergraduate thesis made frequent use of a "pullback" construction for describing large matrices in terms of smallers ones, by performing an operation on the indices of the large matrix. 
 
 I'll show what I mean by way of an example.
@@ -25,10 +27,17 @@ f: 4 &\mapsto 1 \\\\
 
 Now the pullback $f^{-1}(m)$ is defined as follows. 
 
-$$\begin{align} M &= f^{-1} m \\\\
+$$\begin{align} M &= f^{-1} (m) \\\\
 
 &= \begin{pmatrix} 0 & 0 & 0 & 1 & 1 \\\\ 
                    0 & 0 & 0 & 1 & 1 \\\\
                    0 & 0 & 0 & 1 & 1 \\\\
                    2 & 2 & 2 & 3 & 3 \\\\
                    2 & 2 & 2 & 3 & 3 \end{pmatrix}\end{align}$$
+                   
+In other words, the larger matrix $M$ is defined such that $M$ at $(i, j)$ is the value of $m$ at $(f(i),f(j))$.
+
+This construction turns out to be very useful when you want to define a matrix based on the attributes of a type.
+
+## numpy approach!
+
