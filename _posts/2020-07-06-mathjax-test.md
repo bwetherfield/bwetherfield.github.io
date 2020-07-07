@@ -50,3 +50,15 @@ Here is our `pullback` function, with the 'map' component implemented as an 1D n
 {%gist 71fb43e446f1eaa45165fe1adf1261e7 %}
 
 Practically a one-liner! 
+
+Now, here is the 
+
+```Python
+>>> f = np.array([0,0,0,1,1])
+>>> pullback(f, m)
+array([[0, 0, 0, 1, 1],
+       [0, 0, 0, 1, 1],
+       [0, 0, 0, 1, 1],
+       [2, 2, 2, 3, 3],
+       [2, 2, 2, 3, 3]])
+```
